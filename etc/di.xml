@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Chalhoub\ShopFinder\Api\ShopFinderRepositoryInterface" type="Chalhoub\ShopFinder\Model\ShopFinderRepository"/>
+	<preference for="Chalhoub\ShopFinder\Api\Data\ShopFinderInterface" type="Chalhoub\ShopFinder\Model\ShopFinder"/>
+	<preference for="Chalhoub\ShopFinder\Api\Data\ShopFinderSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="Chalhoub\ShopFinder\Model\ResourceModel\ShopFinder\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">chalhoub_shopfinder_shopfinder</argument>
+			<argument name="resourceModel" xsi:type="string">Chalhoub\ShopFinder\Model\ResourceModel\ShopFinder\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="chalhoub_shopfinder_shopfinder_listing_data_source" xsi:type="string">Chalhoub\ShopFinder\Model\ResourceModel\ShopFinder\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+
+    <type name="Chalhoub\ShopFinder\Controller\Adminhtml\Index\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">Magento\Catalog\CategoryImageUpload</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Magento\Catalog\CategoryImageUpload" type="Chalhoub\ShopFinder\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">shopfinder/tmp</argument>
+            <argument name="basePath" xsi:type="string">shopfinder</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\GraphQl\Query\Resolver\Argument\FieldEntityAttributesPool">
+        <arguments>
+            <argument name="attributesInstances" xsi:type="array">
+                <item name="shop_finder" xsi:type="object">
+                    \Chalhoub\ShopFinder\Model\Resolver\FilterArgument
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

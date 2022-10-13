@@ -1,0 +1,22 @@
+{
+    "name": "chalhoub/module-shopfinder",
+    "description": "Chalhoub ShopFinder Module",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Ilyas",
+            "email": "ilyas.muy@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Chalhoub\\ShopFinder\\": ""
+        }
+    }
+}

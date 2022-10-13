@@ -1,0 +1,59 @@
+type Query {
+  fetchShop(
+    filter: ShopFinderFilterInput @doc(description: "")
+    pageSize: Int = 5
+      @doc(description: "How many items should show on the page")
+    currentPage: Int = 1
+      @doc(description: "Allows to using paging it start with 1")
+  ): ShopFindersOutput
+    @resolver(
+      class: "\\Chalhoub\\ShopFinder\\Model\\Resolver\\FetchShop"
+    )
+    @doc(description: "Allow to query for a shop.")
+}
+
+type Mutation {
+  createShop(input: ShopFinderInput!): ShopFinderOutput
+    @resolver(
+      class: "\\Chalhoub\\ShopFinder\\Model\\Resolver\\CreateShop"
+    )
+    @doc(description: "Create a new shop")
+
+  updateShop(id: Int!, input: ShopFinderInput): ShopFinderOutput @resolver(class: "Chalhoub\\ShopFinder\\Model\\Resolver\\UpdateShop") @doc(description: "Update customer address")
+
+  deleteShop(id: Int!): Boolean @resolver(class: "Chalhoub\\ShopFinder\\Model\\Resolver\\DeleteShop") @doc(description: "Delete Shop")
+}
+
+type ShopFinderOutput {
+  shop: ShopFinder!
+}
+
+input ShopFinderInput {
+  shop_name: String @doc(description: "")
+  Identifier: String @doc(description: "")
+  Country: String @doc(description: "")
+  Image: String @doc(description: "")
+}
+
+input ShopFinderFilterInput {
+  shop_name: FilterTypeInput @doc(description: "")
+  Identifier: FilterTypeInput @doc(description: "")
+  Country: FilterTypeInput @doc(description: "")
+  Image: FilterTypeInput @doc(description: "")
+  or: ShopFinderFilterInput
+}
+
+type ShopFindersOutput {
+  total_count: Int @doc(description: "")
+  items: [ShopFinder] @doc(description: "")
+}
+
+type ShopFinder {
+  shopfinder_id: Int @doc(description: "")
+  shop_name: String @doc(description: "")
+  Identifier: String @doc(description: "")
+  Country: String @doc(description: "")
+  Image: String @doc(description: "")
+}
+
+

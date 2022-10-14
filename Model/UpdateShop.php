@@ -93,7 +93,7 @@ class UpdateShop
             $shopDataObject->setImage($data["Image"]);
         }
         if (isset($data['Identifier'])) {
-            $shopDataObject->setIdentifier($data["Image"]);
+            $shopDataObject->setIdentifier($data["Identifier"]);
         }
         $this->shopFinderRepository->save($shopDataObject);
         $shopDataObject->setImage($mediaUrl.$shopDataObject->getImage());

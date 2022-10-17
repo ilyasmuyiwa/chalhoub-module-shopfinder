@@ -102,7 +102,9 @@
 		</column>
 		<column name="Country" class="Chalhoub\ShopFinder\Ui\Component\Listing\Column\Country">
 			<settings>
-				<filter>text</filter>
+                <options class="Magento\Directory\Model\Config\Source\Country"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
 				<label translate="true">Country</label>
 				<editor>
 					<editorType>text</editorType>
